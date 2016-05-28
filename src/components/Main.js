@@ -69,7 +69,33 @@ var ImgFigure = React.createClass({
       </figure>
     )
   }
-})
+});
+
+var ControllerUnit = React.createClass({
+  handleClick : function(e){
+    //如果点击的是当前正在选中态的按钮，则反转图片，否则将对应图片居中
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center();
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  },
+  render : function(){
+    var controllerUnitClassName = "controller-unit";
+    //如果对应的是居中的图片  那么显示控制按钮的居中态
+    if(this.props.arrange.isCenter){
+      controllerUnitClassName += ' is-center';
+      if(this.props.arrange.isInverse){
+      controllerUnitClassName += ' is-inverse';
+      }
+    }
+    return(
+      <span className={controllerUnitClassName} onClick={this.handleClick}></span>
+    );
+  }
+});
 
 var AppComponent = React.createClass({
   Constant : {
@@ -125,7 +151,7 @@ var AppComponent = React.createClass({
         vPosRangeX = vPosRange.x,
 
         imgsArrangeTopArr = [],
-        topImgNum = Math.ceil(Math.random() * 2),  //随机生成上册区域图片数量 0或1
+        topImgNum = Math.floor(Math.random() * 2),  //随机生成上册区域图片数量 0或1
         topImgSpliceIndex = 0;
 
         //取出居中图片
@@ -172,6 +198,7 @@ var AppComponent = React.createClass({
             isCenter : false
           }
         }
+
         if(imgsArrangeTopArr && imgsArrangeTopArr[0]){
           imgsArrangeArr.splice(topImgSpliceIndex,0,imgsArrangeTopArr[0]);
         }
@@ -248,13 +275,16 @@ var AppComponent = React.createClass({
         }
       }
       imgFigures.push(<ImgFigure data={value} key={index} arrange={this.state.imgsArrangeArr[index]} ref={'imgFigure' + index} center={this.center(index)} inverse={this.inverse(index)}/>);
+      controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} center={this.center(index)} inverse={this.inverse(index)}/>);
     }.bind(this));
+
     return (
       <section className = "stage" ref="stage">
         <section className = "img-sec">
           {imgFigures}
         </section>
         <nav className = "controller-nav">
+          {controllerUnits}
         </nav>
       </section>
     );

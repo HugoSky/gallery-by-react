@@ -1,4 +1,7 @@
-
+ @font-face {
+    font-family: "icons-turn-arrow";
+    src: url("../fonts/icons/turn-arrow.eot") format("embedded-opentype"), url("../fonts/icons/turn-arrow.woff") format("woff"), url("../fonts/icons/turn-arrow.ttf") format("truetype"), url("../fonts/icons/turn-arrow.svg") format("svg");
+}
 
 html, body {
     width: 100%;
@@ -16,7 +19,7 @@ html, body {
 .stage {
     position: relative;
     width: 100%;
-    height: 680px;
+    height: 100%;
 }
 /* stage -- end */
 
@@ -131,16 +134,15 @@ html, body {
                     font-family: "icons-turn-arrow";
                     font-size: 80%;
                     line-height: 30px;
-
+                    //字体unicode码
                     content: "\e600";
-
+                    //改变浏览器字体渲染方式
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
                 }
 
                 &.is-inverse {
                     background-color: #555;
-
                     transform: rotateY(180deg);
                 }
             }
