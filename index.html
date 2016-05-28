@@ -8,9 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-  <div id="app">APPLICATION CONTENT</div>
+  <div id="app" class="content">APPLICATION CONTENT</div>
 
+
+  <!-- 保证访问localhost:8000/webpack-dev-server热更新 -->
   <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+
+  <!-- 保证访问localhost:8000热更新 -->
+  <script src="/webpack-dev-server.js"></script>
+
+
   <script type="text/javascript" src="./assets/app.js"></script>
 </body>
 </html>
