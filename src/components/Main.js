@@ -96,7 +96,7 @@ var ControllerUnit = React.createClass({
     );
   }
 });
-
+/
 var AppComponent = React.createClass({
   Constant : {
     centerPos : {
